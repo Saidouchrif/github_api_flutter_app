@@ -11,15 +11,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('My First Flutter App')),
+        appBar: AppBar(title: Text('My App')),
         drawer: Drawer(
           child: SafeArea(
             child: Column(
               children: [
                 UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                  ),
+                  decoration: BoxDecoration(color: Colors.blue),
                   accountName: Text("Said Ouchrif"),
                   accountEmail: Text("saidouchrif16@gmail.com"),
                   currentAccountPicture: CircleAvatar(
@@ -45,6 +43,13 @@ class MyApp extends StatelessWidget {
                   title: Text('Projects'),
                   onTap: () {
                     // Handle Projects tap
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.article),
+                  title: Text('Posts'),
+                  onTap: () {
+                    // Handle Posts tap
                   },
                 ),
                 ListTile(
@@ -76,16 +81,8 @@ class Mybody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(child: Text('Hello, Flutter!', style: TextStyle(fontSize: 24))),
-        ElevatedButton(
-          onPressed: () {
-            // Button pressed action
-          },
-          child: Text('Press Me'),
-        ),
-      ],
+    return Container(
+      child: Center(child: Text('Welcome to My First Flutter App!')),
     );
   }
 }
