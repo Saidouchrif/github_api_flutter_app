@@ -1,84 +1,84 @@
-import 'package:flutter/material.dart';
-import 'package:github_api_flutter_app/models/github_user.dart';
-import 'package:github_api_flutter_app/services/github_service.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/material.dart'; // Importe les widgets Material
+import 'package:github_api_flutter_app/models/github_user.dart'; // Modèle d'utilisateur GitHub
+import 'package:github_api_flutter_app/services/github_service.dart'; // Service GitHub pour les appels API
+import 'package:url_launcher/url_launcher.dart'; // Ouvre des liens dans le navigateur
 
-class UsersPage extends StatefulWidget {
-  const UsersPage({super.key});
+class UsersPage extends StatefulWidget { // Widget avec état pour l'écran des utilisateurs
+  const UsersPage({super.key}); // Constructeur const
 
-  @override
-  State<UsersPage> createState() => _UsersPageState();
+  @override // Méthode surchargée
+  State<UsersPage> createState() => _UsersPageState(); // Crée l'état associé
 }
 
-class _UsersPageState extends State<UsersPage> {
-  final GithubService _githubService = GithubService();
-  late Future<List<GithubUser>> _futureUsers;
+class _UsersPageState extends State<UsersPage> { // État de UsersPage
+  final GithubService _githubService = GithubService(); // Instance du service GitHub
+  late Future<List<GithubUser>> _futureUsers; // Future qui contiendra la liste d'utilisateurs
 
-  @override
-  void initState() {
-    super.initState();
-    _futureUsers = _githubService.fetchUsers();
-  }
+  @override // Cycle de vie: initState
+  void initState() { // Initialisation de l'état
+    super.initState(); // Appel au parent
+    _futureUsers = _githubService.fetchUsers(); // Lance la récupération des utilisateurs
+  } // Fin de initState
 
-  void openUserProfile(String url) async {
-    if (url.isEmpty) return;
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Could not open profile")),
-      );
-    }
-  }
+  void openUserProfile(String url) async { // Ouvre un profil utilisateur dans le navigateur externe
+    if (url.isEmpty) return; // Ne fait rien si l'URL est vide
+    final uri = Uri.parse(url); // Convertit la chaîne en Uri
+    if (await canLaunchUrl(uri)) { // Vérifie si l'URL peut être lancée
+      await launchUrl(uri, mode: LaunchMode.externalApplication); // Ouvre dans une application externe
+    } else { // Si impossible d'ouvrir
+      ScaffoldMessenger.of(context).showSnackBar( // Affiche un message d'erreur
+        const SnackBar(content: Text("Could not open profile")), // Contenu du SnackBar
+      ); // Fin du SnackBar
+    } // Fin du if/else
+  } // Fin de openUserProfile
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("GitHub Users")),
-      body: FutureBuilder<List<GithubUser>>(
-        future: _futureUsers,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
+  @override // Surcharge de build
+  Widget build(BuildContext context) { // Construit l'interface de la page
+    return Scaffold( // Structure de base de la page
+      appBar: AppBar(title: const Text("GitHub Users")), // Titre de la page
+      body: FutureBuilder<List<GithubUser>>( // Construit en fonction de l'état du Future
+        future: _futureUsers, // Le futur à écouter
+        builder: (context, snapshot) { // Fonction de construction réactive
+          if (snapshot.connectionState == ConnectionState.waiting) { // Si en cours de chargement
+            return const Center(child: CircularProgressIndicator()); // Affiche un loader centré
+          } // Fin du if waiting
 
-          if (snapshot.hasError) {
-            return Center(child: Text("Error: ${snapshot.error}"));
-          }
+          if (snapshot.hasError) { // Si une erreur est survenue
+            return Center(child: Text("Error: ${snapshot.error}")); // Affiche l'erreur
+          } // Fin du if erreur
 
-          final users = snapshot.data ?? [];
+          final users = snapshot.data ?? []; // Récupère les utilisateurs ou liste vide
 
-          if (users.isEmpty) {
-            return const Center(child: Text("No users found."));
-          }
+          if (users.isEmpty) { // Si la liste est vide
+            return const Center(child: Text("No users found.")); // Affiche un message
+          } // Fin du if vide
 
-          return ListView.builder(
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              final user = users[index];
+          return ListView.builder( // Construit la liste paresseuse des éléments
+            itemCount: users.length, // Nombre d'éléments
+            itemBuilder: (context, index) { // Construit chaque item
+              final user = users[index]; // Utilisateur courant
 
-              return ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(user.avatarUrl),
-                ),
-                title: Text(
-                  user.login,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueAccent,
-                  ),
-                ),
-                subtitle: Text(user.htmlUrl),
-                trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                onTap: () {
-                  openUserProfile(user.htmlUrl);
-                },
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
-}
+              return ListTile( // Élément de liste visuel
+                leading: CircleAvatar( // Avatar circulaire
+                  backgroundImage: NetworkImage(user.avatarUrl), // Image distante de l'avatar
+                ), // Fin du CircleAvatar
+                title: Text( // Titre de l'item
+                  user.login, // Affiche le login de l'utilisateur
+                  style: const TextStyle( // Style du texte
+                    fontWeight: FontWeight.bold, // En gras
+                    color: Colors.blueAccent, // Couleur bleue
+                  ), // Fin du style
+                ), // Fin du titre
+                subtitle: Text(user.htmlUrl), // Sous-titre: URL du profil
+                trailing: const Icon(Icons.arrow_forward_ios, size: 16), // Icône directionnelle
+                onTap: () { // Action au tap
+                  openUserProfile(user.htmlUrl); // Ouvre le profil dans le navigateur
+                }, // Fin de onTap
+              ); // Fin de ListTile
+            }, // Fin de itemBuilder
+          ); // Fin de ListView.builder
+        }, // Fin du builder
+      ), // Fin de FutureBuilder
+    ); // Fin de Scaffold
+  } // Fin de build
+} // Fin de la classe _UsersPageState

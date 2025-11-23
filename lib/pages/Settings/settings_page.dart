@@ -1,93 +1,93 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; // Importe la bibliothèque Material de Flutter
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+class SettingsPage extends StatefulWidget { // Écran des paramètres avec état
+  const SettingsPage({super.key}); // Constructeur const
 
-  @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  @override // Surcharge de méthode
+  State<SettingsPage> createState() => _SettingsPageState(); // Crée l'état associé
 }
 
-class _SettingsPageState extends State<SettingsPage> {
-  bool isDarkMode = false;
-  String selectedLanguage = "English";
+class _SettingsPageState extends State<SettingsPage> { // État de SettingsPage
+  bool isDarkMode = false; // Indicateur de thème sombre (UI uniquement)
+  String selectedLanguage = "English"; // Langue sélectionnée (UI uniquement)
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Settings"),
-        centerTitle: true,
-      ),
+  @override // Surcharge de build
+  Widget build(BuildContext context) { // Construit l'interface des paramètres
+    return Scaffold( // Structure de page
+      appBar: AppBar( // Barre supérieure
+        title: const Text("Settings"), // Titre de la page
+        centerTitle: true, // Centre le titre
+      ), // Fin de AppBar
 
-      body: ListView(
-        padding: const EdgeInsets.all(16.0),
-        children: [
+      body: ListView( // Liste défilante des options
+        padding: const EdgeInsets.all(16.0), // Padding interne
+        children: [ // Enfants de la liste
 
           // ----------- DARK MODE -----------
-          SwitchListTile(
-            title: const Text("Dark Mode"),
-            subtitle: const Text("Enable or disable dark theme"),
-            value: isDarkMode,
-            onChanged: (value) {
-              setState(() {
-                isDarkMode = value;
-              });
-            },
-          ),
+          SwitchListTile( // Ligne avec interrupteur pour le thème sombre
+            title: const Text("Dark Mode"), // Titre de l'option
+            subtitle: const Text("Enable or disable dark theme"), // Description
+            value: isDarkMode, // Valeur actuelle de l'interrupteur
+            onChanged: (value) { // Callback lors du changement
+              setState(() { // Déclenche une reconstruction du widget
+                isDarkMode = value; // Met à jour l'état local
+              }); // Fin de setState
+            }, // Fin de onChanged
+          ), // Fin de SwitchListTile
 
-          const Divider(),
+          const Divider(), // Séparateur visuel
 
           // ----------- LANGUAGE -----------
-          ListTile(
-            title: const Text("Language"),
-            subtitle: Text(selectedLanguage),
-            trailing: DropdownButton<String>(
-              value: selectedLanguage,
-              items: const [
-                DropdownMenuItem(value: "English", child: Text("English")),
-                DropdownMenuItem(value: "French", child: Text("French")),
-                DropdownMenuItem(value: "Arabic", child: Text("Arabic")),
-              ],
-              onChanged: (value) {
-                setState(() {  
-                  selectedLanguage = value!;
-                });
-              },
-            ),
-          ),
+          ListTile( // Ligne de sélection de la langue
+            title: const Text("Language"), // Titre de l'option
+            subtitle: Text(selectedLanguage), // Affiche la langue actuelle
+            trailing: DropdownButton<String>( // Sélecteur déroulant
+              value: selectedLanguage, // Valeur courante
+              items: const [ // Éléments disponibles
+                DropdownMenuItem(value: "English", child: Text("English")), // Option Anglais
+                DropdownMenuItem(value: "French", child: Text("French")), // Option Français
+                DropdownMenuItem(value: "Arabic", child: Text("Arabic")), // Option Arabe
+              ], // Fin des items
+              onChanged: (value) { // Callback au changement de valeur
+                setState(() {   // Met à jour l'état
+                  selectedLanguage = value!; // Assigne la nouvelle valeur (non nulle)
+                }); // Fin de setState
+              }, // Fin de onChanged
+            ), // Fin de DropdownButton
+          ), // Fin de ListTile (language)
 
-          const Divider(),
+          const Divider(), // Séparateur visuel
 
           // ----------- ABOUT APP -----------
-          ListTile(
-            leading: const Icon(Icons.info_outline),
-            title: const Text("About App"),
-            subtitle: const Text("Version 1.0.0 - Made by Ouchrif IT"),
-            onTap: () {
-              showAboutDialog(
-                context: context,
-                applicationName: "GitHub Explorer",
-                applicationVersion: "1.0.0",
-                applicationLegalese: "Developed by Said Ouchrif",
-              );
-            },
-          ),
+          ListTile( // Ligne d'information "À propos"
+            leading: const Icon(Icons.info_outline), // Icône d'information
+            title: const Text("About App"), // Titre
+            subtitle: const Text("Version 1.0.0 - Made by Ouchrif IT"), // Sous-titre
+            onTap: () { // Action au clic
+              showAboutDialog( // Ouvre une boîte de dialogue "À propos"
+                context: context, // Contexte d'affichage
+                applicationName: "GitHub Explorer", // Nom de l'application
+                applicationVersion: "1.0.0", // Version
+                applicationLegalese: "Developed by Said Ouchrif", // Mentions légales
+              ); // Fin de showAboutDialog
+            }, // Fin de onTap
+          ), // Fin de ListTile (about)
 
-          const Divider(),
+          const Divider(), // Séparateur visuel
 
           // ----------- CLEAR CACHE (UI ONLY) -----------
-          ListTile(
-            leading: const Icon(Icons.cleaning_services),
-            title: const Text("Clear Cache"),
-            subtitle: const Text("Remove temporary app data"),
-            onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Cache cleared successfully")),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
+          ListTile( // Ligne pour "vider le cache" (démonstration UI)
+            leading: const Icon(Icons.cleaning_services), // Icône de nettoyage
+            title: const Text("Clear Cache"), // Titre
+            subtitle: const Text("Remove temporary app data"), // Description
+            onTap: () { // Action au clic
+              ScaffoldMessenger.of(context).showSnackBar( // Affiche une notification
+                const SnackBar(content: Text("Cache cleared successfully")), // Message de confirmation
+              ); // Fin de showSnackBar
+            }, // Fin de onTap
+          ), // Fin de ListTile (clear cache)
+        ], // Fin des children
+      ), // Fin de ListView
+    ); // Fin de Scaffold
+  } // Fin de build
+} // Fin de la classe _SettingsPageState
