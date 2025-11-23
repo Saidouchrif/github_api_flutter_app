@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:github_api_flutter_app/pages/Contact/contact_page.dart';
 import 'package:github_api_flutter_app/pages/Posts/posts_page.dart';
 import 'package:github_api_flutter_app/pages/Projects/project_page.dart';
+import 'package:github_api_flutter_app/pages/Settings/settings_page.dart';
 import 'package:github_api_flutter_app/pages/Users/users_page.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -39,7 +40,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(context,
-                  MaterialPageRoute(builder: (_)=> const Myusers())
+                  MaterialPageRoute(builder: (_)=> const UsersPage())
                   );
                 },
               ),
@@ -77,7 +78,13 @@ class HomePage extends StatelessWidget {
               ListTile(
                 leading: const Icon(Icons.settings),
                 title: const Text('Settings'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const SettingsPage()),
+                  );
+                },
               ),
             ],
           ),
