@@ -31,9 +31,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
           }
 
           if (snapshot.hasError) {
-            return Center(
-              child: Text('Error: ${snapshot.error}'),
-            );
+            return Center(child: Text('Error: ${snapshot.error}'));
           }
 
           final repos = snapshot.data ?? [];
@@ -47,17 +45,33 @@ class _ProjectsPageState extends State<ProjectsPage> {
             itemBuilder: (context, index) {
               final repo = repos[index];
               return ListTile(
-                leading: const Icon(Icons.folder),
-                title: Text(repo.name),
+                leading: Image.network(
+                  "https://cdn-icons-png.flaticon.com/512/25/25231.png",
+                  width: 32,
+                  height: 32,
+                ),
+                title: Text(
+                  repo.name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.blueAccent,
+                  ),
+                ),
                 subtitle: Text(
                   (repo.description?.isNotEmpty ?? false)
                       ? repo.description!
                       : 'No description',
                 ),
-                trailing: Text(repo.language ?? ''),
+                trailing: Text(
+                  repo.language ?? '',
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Colors.green,
+                  ),
+                ),
                 onTap: () {
-                  // par ex: t9dar t7ell lien f browser b url_launcher
-                  // wla taffichi details page
+                  // Optionally, handle tap to open repo URL
                 },
               );
             },
