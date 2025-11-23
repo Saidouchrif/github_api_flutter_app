@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(context,
-                  MaterialPageRoute(builder: (_)=> const Myposts())
+                  MaterialPageRoute(builder: (_)=> const PostsPage())
                   );
                 },
               ),
@@ -100,8 +100,64 @@ class MyBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Welcome to My First Flutter App!'),
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.only(top: 40), 
+
+      child: Center(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blueAccent,
+                Colors.lightBlue,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: Colors.white.withOpacity(0.8),
+              width: 2,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              )
+            ],
+          ),
+
+          child: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+
+            children: [
+              Text(
+                "👋 Welcome!",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+
+              SizedBox(height: 10),
+
+              Text(
+                "Welcome to My First Flutter App!",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white70,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
