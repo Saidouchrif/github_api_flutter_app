@@ -12,7 +12,9 @@ class UpdateContact extends StatelessWidget { // Écran de mise à jour d'un con
     final emailController = TextEditingController(text: contact.email); // Pré-remplit le champ email
     final phoneController = TextEditingController(text: contact.phone); // Pré-remplit le champ téléphone
     return Scaffold( // Structure de page
-      appBar: AppBar(title: Text('Update Contact')), // Titre de la page
+      appBar: AppBar(title: Text('Update Contact'),
+      backgroundColor: Colors.blueAccent,
+      ), // Titre de la page
       body: Padding(padding:  // Widget de padding
         const EdgeInsets.all(16.0), // Ajoute du padding tout autour
         child: Column( // Organise les champs verticalement

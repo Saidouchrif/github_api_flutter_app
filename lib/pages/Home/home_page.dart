@@ -10,7 +10,10 @@ class HomePage extends StatelessWidget { // Définition du widget d'accueil (sta
   @override // Indique la redéfinition de build
   Widget build(BuildContext context) { // Construit l'interface de la page d'accueil
     return Scaffold( // Structure de base de la page
-      appBar: AppBar(title: const Text('Home Page')), // Barre d'app avec le titre
+      appBar: AppBar(
+        title: const Text('Home Page'),
+        backgroundColor: Colors.blueAccent,
+      ), // Barre d'app avec le titre
       drawer: Drawer( // Tiroir de navigation latéral
         child: SafeArea( // Assure l'affichage sous les zones sûres (encoches)
           child: ListView( // Liste des éléments de navigation

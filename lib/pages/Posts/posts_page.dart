@@ -22,7 +22,9 @@ class _PostsPageState extends State<PostsPage> { // Classe d'état pour PostsPag
   @override // Surcharge de build
   Widget build(BuildContext context) { // Construit l'interface de la page
     return Scaffold( // Structure de page avec AppBar et body
-      appBar: AppBar(title: const Text("Posts")), // Barre d'applications avec le titre "Posts"
+      appBar: AppBar(title: const Text("Posts"),
+      backgroundColor: Colors.blueAccent,
+      ), // Barre d'applications avec le titre "Posts"
       body: FutureBuilder<List<Post>>( // Widget réactif basé sur l'état d'un Future
         future: _futurePosts, // Le futur à écouter
         builder: (context, snapshot) { // Fonction de construction pour les différents états

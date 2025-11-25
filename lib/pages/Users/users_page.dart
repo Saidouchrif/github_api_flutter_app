@@ -35,7 +35,9 @@ class _UsersPageState extends State<UsersPage> { // État de UsersPage
   @override // Surcharge de build
   Widget build(BuildContext context) { // Construit l'interface de la page
     return Scaffold( // Structure de base de la page
-      appBar: AppBar(title: const Text("GitHub Users")), // Titre de la page
+      appBar: AppBar(title: const Text("GitHub Users"), // Barre d'app avec le titre
+      backgroundColor: Colors.blueAccent,
+      ), // Titre de la page
       body: FutureBuilder<List<GithubUser>>( // Construit en fonction de l'état du Future
         future: _futureUsers, // Le futur à écouter
         builder: (context, snapshot) { // Fonction de construction réactive

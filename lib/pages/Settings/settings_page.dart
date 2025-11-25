@@ -15,8 +15,9 @@ class _SettingsPageState extends State<SettingsPage> { // État de SettingsPage
   Widget build(BuildContext context) { // Construit l'interface des paramètres
     return Scaffold( // Structure de page
       appBar: AppBar( // Barre supérieure
-        title: const Text("Settings"), // Titre de la page
+        title: const Text("Settings",), // Titre de la page
         centerTitle: true, // Centre le titre
+        backgroundColor: Colors.blueAccent,
       ), // Fin de AppBar
 
       body: ListView( // Liste défilante des options

@@ -11,7 +11,9 @@ class AddContact extends StatelessWidget { // Écran d'ajout de contact (statele
   @override // Surcharge de build
   Widget build(BuildContext context) { // Construit l'interface
     return Scaffold( // Structure de page
-      appBar: AppBar(title: Text("Add Contact")), // Barre d'app avec le titre
+      appBar: AppBar(title: Text("Add Contact"),
+      backgroundColor: Colors.blueAccent,
+      ), // Barre d'app avec le titre
       body: Padding( // Ajoute des marges internes
         padding: const EdgeInsets.all(16.0), // Padding uniforme de 16
         child: Column( // Colonne de champs et bouton

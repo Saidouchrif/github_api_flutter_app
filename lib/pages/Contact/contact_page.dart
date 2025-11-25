@@ -18,7 +18,9 @@ class _ContactPagesState extends State<ContactPages> { // État de la page des c
   @override // Surcharge de build
   Widget build(BuildContext context) { // Construit l'interface de la page
     return Scaffold( // Structure de base
-      appBar: AppBar(title: Text('Contact Us')), // Barre d'app avec titre
+      appBar: AppBar(title: Text('Contact Us'),
+      backgroundColor: Colors.blueAccent,
+      ), // Barre d'app avec titre
       floatingActionButton: FloatingActionButton( // Bouton flottant d'ajout
         // for add contact // Commentaire d'origine
         onPressed: () async { // Action asynchrone au clic
