@@ -3,7 +3,8 @@ import 'package:github_api_flutter_app/pages/Contact/contact_page.dart'; // Impo
 import 'package:github_api_flutter_app/pages/Posts/posts_page.dart'; // Importe la page des posts
 import 'package:github_api_flutter_app/pages/Projects/project_page.dart'; // Importe la page des projets GitHub
 import 'package:github_api_flutter_app/pages/Settings/settings_page.dart'; // Importe la page des paramètres
-import 'package:github_api_flutter_app/pages/Users/users_page.dart'; // Importe la page des utilisateurs GitHub
+import 'package:github_api_flutter_app/pages/Users/users_page.dart';
+import 'package:github_api_flutter_app/pages/Weather/weather_page.dart'; // Importe la page des utilisateurs GitHub
 class HomePage extends StatelessWidget { // Définition du widget d'accueil (stateless)
   const HomePage({super.key}); // Constructeur const avec clé
 
@@ -78,6 +79,17 @@ class HomePage extends StatelessWidget { // Définition du widget d'accueil (sta
                   ); // Fin de push
                 }, // Fin de onTap
               ), // Fin de ListTile Contact
+              ListTile(
+                leading: const Icon(Icons.wb_sunny), // Icône de contact
+                title: const Text('Weather'), // Titre de l'item
+                onTap: () { // Action au clic
+                  Navigator.pop(context); // Ferme le tiroir
+                  Navigator.push( // Lance la navigation
+                    context, // Contexte courant
+                    MaterialPageRoute(builder: (_) => const WeatherPage()), // Crée la route vers WeatherPage
+                  ); // Fin de push
+                }, // Fin de onTap
+              ),
               ListTile( // Élément de menu: Settings
                 leading: const Icon(Icons.settings), // Icône paramètres
                 title: const Text('Settings'), // Titre de l'item
