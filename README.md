@@ -10,11 +10,11 @@ Explore GitHub users and repositories with a clean Flutter interface, and experi
 
 ### 📸 Application Gallery
 
-| Home Screen | Users List | Projects List | Posts Screen |
+| Home Screen | Projects List | Users List | Meteo |
 |-------------|------------|---------------|--------------|
 | ![Home Screen](images/scrin1.jpg) | ![Users List](images/scrin2.jpg) | ![Projects List](images/scrin3.jpg) | ![Posts Screen](images/scrin4.jpg) |
 
-| Settings Screen | Contact Add | Contact Update | Navigation Drawer |
+| Posts Screen | Navigation Drawer | Chat IA | Contact |
 |-----------------|-------------|----------------|-------------------|
 | ![Settings](images/scrin5.jpg) | ![Contact Add](images/scrin6.jpg) | ![Contact Update](images/scrin7.jpg) | ![Navigation](images/scrin8.jpg) |
 
