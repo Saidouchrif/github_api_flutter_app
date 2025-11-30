@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Service responsable d’envoyer des requêtes à l’API OpenAI
 /// pour générer des réponses au chat.
 class OpenAIService {
   // ⚠️ La clé API est récupérée depuis l’environnement (secure)
-  final String openAiApiKey = const String.fromEnvironment('OPENAI_API_KEY', defaultValue: "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");
+  final String openAiApiKey = dotenv.env['OPENAI_API_KEY'] ?? "";
  
   // Endpoint officiel d’OpenAI Chat Completions
   static const String _baseUrl = "https://api.openai.com/v1/chat/completions";
